@@ -82,12 +82,12 @@ angular.module('environment', []).
 		 * @return {Void}
 		 */
 		this.check = function() {
-			var	location = window.location.href,
+			var	local = window.location.host,
 					self = this;
 
 			angular.forEach(this.data.domains, function(v, k) {
 				angular.forEach(v, function(v) {
-					if (location.match(new RegExp("^http(s)?:\/\/.+" + v))) {
+					if (local.match(new RegExp(v.replace("*", "(.*)")))) {
 						self.environment = k;
 					}
 				});
